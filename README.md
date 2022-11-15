@@ -2,7 +2,11 @@
 
 junior developer Task Assignment : web API to add, list, retrieve, delete personal notes we have Two database models (Note, Author) .
 
-And one API endpoint that can handle: o Adding a note to specific author. o Listing all notes with author info. o Deleting a note by id. o Retrieving one note by id.
+And one API endpoint that can handle: 
+o Adding a note to specific author. 
+o Listing all notes with author info.
+o Deleting a note by id. 
+o Retrieving one note by id.
 
 you can see the apis documentaion and run it on postman on this link : https://documenter.getpostman.com/view/15047888/2s8YeuKWHJ
 
