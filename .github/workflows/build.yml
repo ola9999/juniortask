@@ -15,30 +15,30 @@ jobs:
     runs-on: ubuntu-latest
     # needs: [test_django_job]
     steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag mysite-app:latest
+    # - uses: actions/checkout@v3
+    # - name: Build the Docker image
+    #   run: docker build . --file Dockerfile --tag mysite-app:latest
 
-    - uses: actions/checkout@v3
-    - name: Build the Docker image2
-      run: docker build . --file Dockerfile --tag postgres:11.18-alpine
+    # - uses: actions/checkout@v3
+    # - name: Build the Docker image2
+    #   run: docker build . --file Dockerfile --tag postgres:11.18-alpine
 
-      # - name: Checkout
-      #   uses: actions/checkout@v3
-        
-      # - name: Login to Docker Hub
-      #   uses: docker/login-action@v2
-      #   with:
-      #     username: olams
-      #     password: 123123123
+    - name: Checkout
+      uses: actions/checkout@v3
+      
+    - name: Login to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: olams
+        password: 123123123
 
-      # - name: Set up Docker Buildx
-      #   uses: docker/setup-buildx-action@v2
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
 
-      # - name: Build and push
-      #   uses: docker/build-push-action@v3
-      #   with:
-      #     context: .
-      #     file: ./Dockerfile
-      #     push: true
-      #     tags: olams/mysite-app:latest
+    - name: Build and push
+      uses: docker/build-push-action@v3
+      with:
+        context: .
+        file: ./Dockerfile
+        push: true
+        tags: olams/mysite-app:latest
