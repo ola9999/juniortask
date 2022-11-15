@@ -9,11 +9,11 @@ on:
     branches: [main]
 
 jobs:
-  # test_django_job:
-  #     # uses: ola9999/juniortask/.github/workflows/test-django.yaml@main
+  test_django_job:
+      uses: ola9999/juniortask/.github/workflows/test-django.yml@main
   build:
     runs-on: ubuntu-latest
-    # needs: [test_django_job]
+    needs: [test_django_job]
     steps:
     # - uses: actions/checkout@v3
     # - name: Build the Docker image
