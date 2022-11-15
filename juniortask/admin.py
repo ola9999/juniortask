@@ -8,6 +8,9 @@ admin.site.register(Author,Author_admin)
 
 
 class Note_admin(admin.ModelAdmin):
-    list_display=( 'author','content')
+    list_display=( 'author_name','content')
+
+    def author_name(self,obj):
+        return obj.author.full_name
 
 admin.site.register(Note,Note_admin)
