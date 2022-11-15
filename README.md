@@ -19,3 +19,5 @@ Postgres DB properties:
 - USER      =   postgres
 
 - PASSWORD  =   123123
+
+<<.. next : you can run github action to test the project using docker ..>>
