@@ -1,4 +1,4 @@
-name: Django CI
+name: Django CI & Postgres
 
 on:
   push:
@@ -10,8 +10,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-
+  django:
     runs-on: ubuntu-latest
     defaults:
       run:
