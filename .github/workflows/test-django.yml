@@ -1,0 +1,61 @@
+name: Django CI & Postgres
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_call:
+  workflow_dispatch:
+
+jobs:
+  django:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./
+    env:
+      DJANGO_SECRET_KEY: django-insecure-%^7f)zmhy4j+@!147)8@=8e5&p_&f7qhbpv7b&qqu*j*ficp@n
+      POSTGRES_DB: db
+      POSTGRES_PASSWORD: 123123
+      POSTGRES_USER: postgres
+      POSTGRES_HOST: localhost
+      POSTGRES_PORT: 5432
+      DB_IGNORE_SSL: "true"
+
+    services:
+      db:
+        image: postgres:11.18-alpine
+        env:
+          POSTGRES_DB: db
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: 123123
+        volumes:
+          - db:/var/lib/postgresql/data
+        ports:
+          - "5432:5432"
+        options: >-
+          --health-cmd pg_isready 
+          --health-interval 10s 
+          --health-timeout 5s 
+          --health-retries 5
+
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: [3.9]
+        
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Run Tests
+      run: |
+        python manage.py migrate
