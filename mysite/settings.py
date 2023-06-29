@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -73,23 +74,24 @@ WSGI_APPLICATION = "mysite.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+DATABASES = {
+    'default': dj_database_url.parse('postgres://ola:bxRGKibbrnnOXKIXL97Vtv50VMLcQ4VS@dpg-ciem805gkuvlk1h49jn0-a.singapore-postgres.render.com/ola')
+    #   {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'db',
+    #     'USER': 'ola',
+    #     'PASSWORD': '123123',
+    #     'HOST': '127.0.0.1',
+    #     'PORT': '5432'
+    # }
+}
+
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'db',
-#         'USER': 'postgres',
-#         'PASSWORD': '123123',
-#         'HOST': '127.0.0.1',
-#         'PORT': '5432'
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
@@ -134,6 +136,8 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR /"staticfiles/"
+
+MEDIA_URL = "media/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
