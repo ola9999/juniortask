@@ -75,7 +75,7 @@ WSGI_APPLICATION = "mysite.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 DATABASES = {
-    'default': dj_database_url.parse('postgres://ola:bxRGKibbrnnOXKIXL97Vtv50VMLcQ4VS@dpg-ciem805gkuvlk1h49jn0-a.singapore-postgres.render.com/ola')
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     #   {
     #     'ENGINE': 'django.db.backends.postgresql',
     #     'NAME': 'db',
