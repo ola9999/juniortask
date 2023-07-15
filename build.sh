@@ -2,10 +2,12 @@
 # exit on error
 
 set -o errexit
-pip install -r requirements.txt
+/opt/render/project/src/.venv/bin/python pip install -r requirements.txt
 
 poetry install
-python manage.py collectstatic --no-input
-python manage.py migrate
+poetry lock
+/opt/render/project/src/.venv/bin/python -m pip install --upgrade pip
+/opt/render/project/src/.venv/bin/python manage.py collectstatic --no-input
+/opt/render/project/src/.venv/bin/python manage.py migrate
 
 poetry add gunicorn
