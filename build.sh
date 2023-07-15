@@ -2,7 +2,7 @@
 # exit on error
 
 set -o errexit
-/opt/render/project/src/.venv/bin/python pip install -r requirements.txt
+/opt/render/project/src/.venv/bin/python -m pip install -r requirements.txt
 
 poetry install
 poetry lock
